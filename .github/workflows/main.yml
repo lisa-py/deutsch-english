@@ -11,6 +11,9 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v3
 
+      - name: Install curl
+        run: sudo apt-get update && sudo apt-get install -y curl
+
       - name: Fetch CSV data from Google Sheet
         run: |
           curl -L https://docs.google.com/spreadsheets/d/e/2PACX-1vQVennPeX922c0SdERLUY5Wgeq5pPAUdHVj680pplP2CFgdgdki8e2igY7VjsQOVRjZGCCdHZT5AbuE/pub?gid=258279914&single=true&output=csv -o deutsch-english-vocab-list.csv

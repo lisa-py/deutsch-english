@@ -11,12 +11,12 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v3
 
-      - name: Install curl
+      - name: Ensure curl is installed
         run: sudo apt-get update && sudo apt-get install -y curl
 
       - name: Fetch CSV data from Google Sheet
         run: |
-          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vQVennPeX922c0SdERLUY5Wgeq5pPAUdHVj680pplP2CFgdgdki8e2igY7VjsQOVRjZGCCdHZT5AbuE/pub?gid=258279914&single=true&output=csv" -o deutsch-english-vocab-list.csv
+          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vQVennPeX922c0SdERLUY5Wgeq5pPAUdHVj680pplP2CFgdgdki8e2igY7VjsQOVRjZGCCdHZT5AbuE/pub?gid=258279914&single=true&output=csv" -o dataset.csv
 
      
       - name: Commit file
@@ -25,7 +25,7 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
-          git add deutsch-english-vocab-list.csv
+          git add dataset.csv
                     
           git commit -m "Automated data update from Google Sheet [skip ci]" || echo "No changes to commit"
           
